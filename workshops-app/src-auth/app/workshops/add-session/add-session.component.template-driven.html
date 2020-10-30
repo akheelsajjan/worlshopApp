@@ -1,0 +1,69 @@
+<div class="row my-4">
+    <div class="col-12">
+        <h3>
+            Add a session to this workshop
+        </h3>
+        <hr />
+    </div>
+    <div class="col-12 mt-3">
+        <!-- new FormGroup() -->
+        <form #addSessionForm="ngForm" (ngSubmit)="addSession( $event, addSessionForm )" novalidate>
+            <mat-form-field>
+                <mat-label>Sequence ID</mat-label>
+                <!-- new FormControl() -->
+                <input matInput placeholder="123" name="sequenceId" required pattern="^\d+$" ngModel #sequenceId="ngModel" />
+                <mat-hint>This decides the order of sessions</mat-hint>
+                <mat-error *ngIf="sequenceId.invalid && (sequenceId.touched || sequenceId.dirty)">
+                    <span *ngIf="sequenceId.errors.required">This field is required.</span>
+                    <span *ngIf="sequenceId.errors.pattern">This field can have only digits</span>
+                </mat-error>
+            </mat-form-field>
+            <!-- sequenceId.invalid && (sequenceId.touched || sequenceId.dirty) -->
+            
+            <!-- {{sequenceId.value | json}}
+            {{sequenceId.errors | json}}
+            {{sequenceId.valid}}
+            {{sequenceId.invalid}} -->
+            <!-- {{sequenceId.dirty}} has the user typed within this input -->
+            <!-- {{sequenceId.touched}} -->
+            <br />
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Topic covered" ngModel name="name" required />
+                <mat-hint>Name of session</mat-hint>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Speakers</mat-label>
+                <input matInput placeholder="John Doe, Jane Doe" ngModel name="speaker" />
+                <mat-hint>Speaker names separted by comma</mat-hint>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Duration</mat-label>
+                <input type="number" matInput ngModel name="duration" />
+                <mat-hint>Duration in hours</mat-hint>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Level</mat-label>
+                <mat-select ngModel name="level">
+                    <mat-option value="">-- Select the level of the session --</mat-option>
+                    <mat-option value="basic">Basic</mat-option>
+                    <mat-option value="intermediate">Intermediate</mat-option>
+                    <mat-option value="advanced">Advanced</mat-option>
+                </mat-select>
+                <mat-hint>Duration in hours</mat-hint>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Abstract</mat-label>
+                <textarea matInput ngModel name="abstract"></textarea>
+                <mat-hint>A brief description of the session topics</mat-hint>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="primary" [disabled]="addSessionForm.invalid">Add session</button>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+<div>
+    <h1>
+        List of Workshops
+        <div>
+            <!-- EXERCISE -->
+            <!-- Write a function to change the showDescription variable value -->
+            <button mat-raised-button color="primary" (click)="toggleShowDescription()">
+                <mat-icon>{{ showDescription ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
+                {{getButtonText()}}
+            </button>
+        </div>
+    </h1>
+    <hr />
+    <div class="row">
+        <div class="col-4 d-flex" *ngFor="let workshop of workshops">
+            <mat-card class="workshop-card mt-3 mb-3" [routerLink]="[ workshop.id ]">
+                <mat-card-header>
+                    <mat-card-title>{{workshop.name}}</mat-card-title>
+                    <mat-card-subtitle>
+                        {{workshop.location.address}} {{workshop.location.city}}, {{workshop.location.state}}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <div class="workshop-image-container">
+                    <img mat-card-image [src]="workshop.imageUrl" [alt]="workshop.name" class="workshop-image" [style.height.px]="imageHeight" />
+                </div>
+                <mat-card-content>
+                    <div>
+                        <span>{{workshop.startDate | date}}</span> - <span>{{workshop.endDate | date}}</span>
+                    </div>
+                    <div>
+                        <span>{{workshop.time}}</span>
+                    </div>
+                    <div class="workshop-description-container" *ngIf="showDescription">
+                        <mat-divider></mat-divider>
+                        <div [innerHTML]="workshop.description" class="workshop-description"></div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+

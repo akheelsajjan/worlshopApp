@@ -1,0 +1,9 @@
+<div>
+    <p>
+        Number of items = {{items.length}}
+    </p>
+    <mat-form-field>
+        <input matInput name="search" [(ngModel)]="searchTerms" (ngModelChange)="filterItems()" />
+        <mat-hint>Search for sessions</mat-hint>
+    </mat-form-field>
+</div>

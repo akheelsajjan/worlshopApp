@@ -1,0 +1,56 @@
+<div>
+    <h2>{{workshop.name | titlecase}}</h2>
+    <hr />
+    <div class="row my-4">
+        <div class="col-4">
+            <img [src]="workshop.imageUrl" class="img-fluid" />
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-3">
+                    <p>
+                        <small>
+                            {{workshop.startDate | date:dateFormat}} - {{workshop.endDate | date:dateFormat}}
+                        </small>
+                    </p>
+                    <p>
+                        <small class="text-muted">
+                            {{workshop.time}}
+                        </small>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <div [ngSwitch]="workshop.modes.online">
+                            <i class="fas fa-check" *ngSwitchCase="true"></i>
+                            <i class="fas fa-times" *ngSwitchCase="false"></i>
+                            Online
+                        </div>
+                    </div>
+
+                    <div>
+                        <div [ngSwitch]="workshop.modes.inPerson">
+                            <i class="fas fa-check" *ngSwitchCase="true"></i>
+                            <i class="fas fa-times" *ngSwitchCase="false"></i>
+                            In person
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p [innerHTML]="workshop.description"></p>
+        </div>
+        <!-- {{workshop | json}} -->
+    </div>
+    <!--
+        <mat-tab-group mat-align-tabs="start" (selectedIndexChange)="changedTabs( $event )">
+            <mat-tab label="Sessions"></mat-tab>
+            <mat-tab label="Add a session"></mat-tab>
+        </mat-tab-group>
+    -->
+
+    <a [routerLink]="[ '.' ]">Sessions</a>
+    &nbsp;&nbsp;
+    <a [routerLink]="[ 'add' ]">Add a session</a>
+
+    <router-outlet></router-outlet>
+</div>

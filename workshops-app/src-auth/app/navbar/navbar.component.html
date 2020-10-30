@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="container">
+        <span class="mat-toolbar-item">
+            <a [routerLink]="links[0].link" class="pl-0">{{links[0].name}}</a>
+        </span>
+        <span class="mat-toolbar-item">
+            <a [routerLink]="links[1].link">{{links[1].name}}</a>
+        </span>
+        <!-- Define CSS file with .fill-remaining-space { flex: 1 1 auto; } -->
+        <span class="fill-remaining-space"></span>
+        <span class="mat-toolbar-item">
+            <a [routerLink]="links[2].link" class="pr-0">{{links[2].name}}</a>
+        </span>
+        <span class="mat-toolbar-item" *ngIf="!isLoggedIn()">
+            <a [routerLink]="links[3].link" class="pr-0">{{links[3].name}}</a>
+        </span>
+        <span class="mat-toolbar-item" *ngIf="isLoggedIn()">
+            <span class="pr-0" (click)="logout()">Logout</span>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
